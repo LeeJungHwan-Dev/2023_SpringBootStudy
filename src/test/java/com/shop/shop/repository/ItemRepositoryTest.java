@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,7 +33,7 @@ class ItemRepositoryTest {
             item.setRegTim(LocalDateTime.now());
             item.setUpdateTIme(LocalDateTime.now());
             Item savedItem = itemRepository.save(item);
-            System.out.println(savedItem.toString());
+            System.out.println(savedItem);
         }
     }
 
