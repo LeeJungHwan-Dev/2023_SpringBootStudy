@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.shop.shop.repository.ItemRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-07-20T15:19:54" hostname="ijeonghwans-MacBook-Pro.local" time="0.395">
+  <properties/>
+  <testcase name="nativeQuery 속성을 이용한 상품 조회 테스트" classname="com.shop.shop.repository.ItemRepositoryTest" time="0.395"/>
+  <system-out><![CDATA[00:19:52.880 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.shop.shop.repository.ItemRepositoryTest]: ItemRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+00:19:52.927 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.shop.shop.ShopApplication for test class com.shop.shop.repository.ItemRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2023-07-21T00:19:53.161+09:00  INFO 63895 --- [    Test worker] c.s.shop.repository.ItemRepositoryTest   : Starting ItemRepositoryTest using Java 17.0.7 with PID 63895 (started by lee in /Users/lee/Desktop/shop)
+2023-07-21T00:19:53.162+09:00  INFO 63895 --- [    Test worker] c.s.shop.repository.ItemRepositoryTest   : No active profile set, falling back to 1 default profile: "default"
+2023-07-21T00:19:53.469+09:00  INFO 63895 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-21T00:19:53.498+09:00  INFO 63895 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 1 JPA repository interfaces.
+2023-07-21T00:19:53.689+09:00  INFO 63895 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-21T00:19:53.713+09:00  INFO 63895 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-07-21T00:19:53.715+09:00  INFO 63895 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-21T00:19:53.779+09:00  INFO 63895 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-21T00:19:53.839+09:00  INFO 63895 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-21T00:19:53.848+09:00  INFO 63895 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-21T00:19:53.935+09:00  INFO 63895 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:test user=LEE
+2023-07-21T00:19:53.936+09:00  INFO 63895 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-21T00:19:54.059+09:00  INFO 63895 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-21T00:19:54.313+09:00  INFO 63895 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Hibernate: 
+    drop table if exists item cascade 
+Hibernate: 
+    drop sequence if exists item_seq
+Hibernate: 
+    create sequence item_seq start with 1 increment by 50
+Hibernate: 
+    create table item (
+        price integer not null,
+        stock_number integer not null,
+        item_id bigint not null,
+        reg_tim timestamp(6),
+        updatetime timestamp(6),
+        item_nm varchar(50) not null,
+        item_sell_status varchar(255) check (item_sell_status in ('SELL','SOLD_OUT')),
+        item_detail clob not null,
+        primary key (item_id)
+    )
+2023-07-21T00:19:54.328+09:00  INFO 63895 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-21T00:19:54.408+09:00  WARN 63895 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-21T00:19:54.745+09:00  INFO 63895 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-07-21T00:19:54.960+09:00  INFO 63895 --- [    Test worker] c.s.shop.repository.ItemRepositoryTest   : Started ItemRepositoryTest in 1.943 seconds (process running for 2.437)
+Hibernate: 
+    select
+        next value for item_seq
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=1, itemNm=테스트 상품0, price=10000, stockNumber=100, itemDetail=테스트 상품 상세 설명0, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.268798, updateTIme=2023-07-21T00:19:55.268817)
+Hibernate: 
+    select
+        next value for item_seq
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=2, itemNm=테스트 상품1, price=10001, stockNumber=100, itemDetail=테스트 상품 상세 설명1, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.299413, updateTIme=2023-07-21T00:19:55.299424)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=3, itemNm=테스트 상품2, price=10002, stockNumber=100, itemDetail=테스트 상품 상세 설명2, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.300923, updateTIme=2023-07-21T00:19:55.300931)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=4, itemNm=테스트 상품3, price=10003, stockNumber=100, itemDetail=테스트 상품 상세 설명3, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.302717, updateTIme=2023-07-21T00:19:55.302724)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=5, itemNm=테스트 상품4, price=10004, stockNumber=100, itemDetail=테스트 상품 상세 설명4, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.303826, updateTIme=2023-07-21T00:19:55.303834)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=6, itemNm=테스트 상품5, price=10005, stockNumber=100, itemDetail=테스트 상품 상세 설명5, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.305856, updateTIme=2023-07-21T00:19:55.305864)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=7, itemNm=테스트 상품6, price=10006, stockNumber=100, itemDetail=테스트 상품 상세 설명6, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.306892, updateTIme=2023-07-21T00:19:55.306898)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=8, itemNm=테스트 상품7, price=10007, stockNumber=100, itemDetail=테스트 상품 상세 설명7, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.308173, updateTIme=2023-07-21T00:19:55.308187)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=9, itemNm=테스트 상품8, price=10008, stockNumber=100, itemDetail=테스트 상품 상세 설명8, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.309241, updateTIme=2023-07-21T00:19:55.309247)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=10, itemNm=테스트 상품9, price=10009, stockNumber=100, itemDetail=테스트 상품 상세 설명9, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.310508, updateTIme=2023-07-21T00:19:55.310515)
+Hibernate: 
+    insert 
+    into
+        item
+        (item_detail,item_nm,item_sell_status,price,reg_tim,stock_number,updatetime,item_id) 
+    values
+        (?,?,?,?,?,?,?,?)
+Item(id=11, itemNm=테스트 상품10, price=10010, stockNumber=100, itemDetail=테스트 상품 상세 설명10, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.311368, updateTIme=2023-07-21T00:19:55.311374)
+Hibernate: 
+    select
+        * 
+    from
+        item i 
+    where
+        i.item_detail like CONCAT('%',?,'%') 
+    order by
+        i.price desc
+Item(id=11, itemNm=테스트 상품10, price=10010, stockNumber=100, itemDetail=테스트 상품 상세 설명10, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.311368, updateTIme=2023-07-21T00:19:55.311374)
+Item(id=10, itemNm=테스트 상품9, price=10009, stockNumber=100, itemDetail=테스트 상품 상세 설명9, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.310508, updateTIme=2023-07-21T00:19:55.310515)
+Item(id=9, itemNm=테스트 상품8, price=10008, stockNumber=100, itemDetail=테스트 상품 상세 설명8, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.309241, updateTIme=2023-07-21T00:19:55.309247)
+Item(id=8, itemNm=테스트 상품7, price=10007, stockNumber=100, itemDetail=테스트 상품 상세 설명7, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.308173, updateTIme=2023-07-21T00:19:55.308187)
+Item(id=7, itemNm=테스트 상품6, price=10006, stockNumber=100, itemDetail=테스트 상품 상세 설명6, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.306892, updateTIme=2023-07-21T00:19:55.306898)
+Item(id=6, itemNm=테스트 상품5, price=10005, stockNumber=100, itemDetail=테스트 상품 상세 설명5, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.305856, updateTIme=2023-07-21T00:19:55.305864)
+Item(id=5, itemNm=테스트 상품4, price=10004, stockNumber=100, itemDetail=테스트 상품 상세 설명4, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.303826, updateTIme=2023-07-21T00:19:55.303834)
+Item(id=4, itemNm=테스트 상품3, price=10003, stockNumber=100, itemDetail=테스트 상품 상세 설명3, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.302717, updateTIme=2023-07-21T00:19:55.302724)
+Item(id=3, itemNm=테스트 상품2, price=10002, stockNumber=100, itemDetail=테스트 상품 상세 설명2, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.300923, updateTIme=2023-07-21T00:19:55.300931)
+Item(id=2, itemNm=테스트 상품1, price=10001, stockNumber=100, itemDetail=테스트 상품 상세 설명1, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.299413, updateTIme=2023-07-21T00:19:55.299424)
+Item(id=1, itemNm=테스트 상품0, price=10000, stockNumber=100, itemDetail=테스트 상품 상세 설명0, itemSellStatus=SELL, regTim=2023-07-21T00:19:55.268798, updateTIme=2023-07-21T00:19:55.268817)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
